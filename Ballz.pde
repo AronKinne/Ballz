@@ -1,5 +1,3 @@
-// To do: In Player class: spawn interval for balls in go()
-
 int scl = 50;
 Game game;
 
