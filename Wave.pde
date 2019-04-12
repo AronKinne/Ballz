@@ -26,7 +26,12 @@ class Wave {
   }
   
   void draw() {
-    for(Brick b : bricks) b.draw(); 
+    for(int i = bricks.size() - 1; i >= 0; i--) {
+      Brick b = bricks.get(i);
+      b.draw();
+      b.detectBall();
+      if(b.size <= 0) bricks.remove(b);
+    }
   }
 
   void spawnBrick() {

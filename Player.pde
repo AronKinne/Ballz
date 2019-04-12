@@ -3,17 +3,22 @@ class Player {
   PVector start, shootDir;
   ArrayList<Ball> balls;
   float interval;
+  Game parentGame;
 
-  Player() {
+  Player(Game parentGame) {
     start = new PVector(width * .5, height - scl * .5);
     shootDir = null;
     balls = new ArrayList<Ball>();
-    balls.add(new Ball(start));
+    balls.add(new Ball(start, this));
     interval = 10;
+    this.parentGame = parentGame;
   }
 
   void draw() {
-    for (Ball b : balls) b.draw();
+    for (Ball b : balls) {
+      b.draw();
+      b.resolveCollision();
+    }
 
     if (shootDir != null) {
       int left = balls.size();

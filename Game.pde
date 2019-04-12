@@ -8,7 +8,7 @@ class Game {
   Game() {
     level = 1;
     waves = new ArrayList<Wave>();
-    p = new Player();
+    p = new Player(this);
     waiting = true;
     
     waves.add(new Wave(level));
@@ -29,7 +29,10 @@ class Game {
   }
   
   void draw() {
-    for(Wave w : waves) w.draw();
+    for(Wave w : waves) {
+      w.draw();
+    }
+    
     p.draw();
   }
   
