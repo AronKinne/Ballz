@@ -7,7 +7,7 @@ class Ball {
   Player parentPlayer;
 
   Ball(PVector pos, Player parentPlayer) {
-    this.pos = pos;
+    this.pos = pos.copy();
     this.vel = new PVector();
     r = 8;
     speed = 8;

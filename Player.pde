@@ -4,11 +4,13 @@ class Player {
   ArrayList<Ball> balls;
   float interval;
   Game parentGame;
+  int ballsWaiting;
 
   Player(Game parentGame) {
     start = new PVector(width * .5, height - scl * .5);
     shootDir = null;
     balls = new ArrayList<Ball>();
+    balls.add(new Ball(start, this));
     balls.add(new Ball(start, this));
     interval = 10;
     this.parentGame = parentGame;
@@ -19,13 +21,12 @@ class Player {
       b.draw();
       b.resolveCollision();
     }
-
+    
     if (shootDir != null) {
-      int left = balls.size();
-      if (left > 0) {
+      if (ballsWaiting > 0) {
         if (frameCount % interval == 0) {
-          balls.get(balls.size() - left).go(shootDir);
-          left--;
+          balls.get(balls.size() - ballsWaiting).go(shootDir.copy());
+          ballsWaiting--;
         }
       } else {
         shootDir = null;
@@ -33,7 +34,8 @@ class Player {
     }
   }
 
-  public void go(float mX, float mY) {
+  void go(float mX, float mY) {
     shootDir = new PVector(mX, mY).sub(start).normalize();
+    ballsWaiting = balls.size();
   }
 }
