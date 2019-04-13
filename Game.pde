@@ -23,6 +23,10 @@ class Game {
     p.addBall();
   }
   
+  void ff() {
+    p.ff(); 
+  }
+  
   void mousePressed() {
     if(waiting) {
       p.go(mouseX, mouseY);
@@ -36,6 +40,11 @@ class Game {
     }
     
     p.draw();
+    
+    fill(0, 255, 255);
+    textSize(scl *.5);
+    textAlign(LEFT, BOTTOM);
+    text(level, scl * .25, height - scl * .25);
   }
   
 }

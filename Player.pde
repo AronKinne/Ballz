@@ -15,7 +15,15 @@ class Player {
     this.parentGame = parentGame;
   }
 
+  void ff() {
+    for (Ball b : balls) b.ff();
+  }
+
   void draw() {
+    noStroke();
+    fill(255, 255, 255);
+    circle(start.x, start.y, 10);
+    
     if (shootDir != null) {
       if (ballsWaiting > 0) {
         if (frameCount % interval == 0) {

@@ -1,7 +1,7 @@
 class Ball {
 
   PVector pos, vel;
-  float r, speed;
+  float r, speed, speedSlow, speedFast;
   color col;
   boolean moving, out;
   Player parentPlayer;
@@ -10,7 +10,9 @@ class Ball {
     this.pos = pos.copy();
     this.vel = new PVector();
     r = 8;
-    speed = 8;
+    speedSlow = 8;
+    speedFast = 50;
+    speed = speedSlow;
     col = color(0);
     moving = false;
     out = false;
@@ -22,6 +24,7 @@ class Ball {
     vel = new PVector();
     out = false;
     moving = false;
+    speed = speedSlow;
   }
 
   void draw() {    
@@ -32,6 +35,11 @@ class Ball {
     if (moving) {
       pos.add(vel);
     }
+  }
+  
+  void ff() {
+    speed = speedFast;
+    vel.normalize().mult(speed);
   }
 
   void go(PVector dir) {
