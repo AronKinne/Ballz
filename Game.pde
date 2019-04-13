@@ -1,26 +1,25 @@
 class Game {
  
-  int level;
+  int level, addBalls;
   ArrayList<Wave> waves;
   Player p;
   boolean waiting;
   
   Game() {
     level = 1;
+    addBalls = 0;
     waves = new ArrayList<Wave>();
     p = new Player(this);
     waiting = true;
     
-    waves.add(new Wave(level));
+    waves.add(new Wave(level, false));
   }
   
   void next() {
     level++;
     for(Wave w : waves) w.down();
     
-    waves.add(new Wave(level));
-    
-    p.addBall();
+    waves.add(new Wave(level, true));
   }
   
   void ff() {
@@ -40,6 +39,11 @@ class Game {
     }
     
     p.draw();
+    
+    if(waiting && addBalls > 0) {
+      p.addBall();
+      addBalls--;
+    }
     
     fill(0, 255, 255);
     textSize(scl *.5);

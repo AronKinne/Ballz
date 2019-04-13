@@ -15,8 +15,7 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == ' ')game.next();
-  if (key == 'f')game.ff();
+  if (key == ' ') game.ff();
 }
 
 void mousePressed() {
