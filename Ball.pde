@@ -16,6 +16,13 @@ class Ball {
     out = false;
     this.parentPlayer = parentPlayer;
   }
+  
+  void resetPos(PVector pos) {
+    this.pos = pos.copy();
+    vel = new PVector();
+    out = false;
+    moving = false;
+  }
 
   void draw() {    
     noStroke();
@@ -44,10 +51,9 @@ class Ball {
     } else if (pos.y - r < 0) {
       pos.y = r;
       vel.y *= -1;
-    } else if (pos.y - r > height) {
-      pos.y = height - r;
-      vel.y *= -1;
-      //out = true;
+    } else if (pos.y - r > height && !out) {
+      out = true;
+      if(parentPlayer.ballsOut == 0) parentPlayer.setStart(pos.x);
     }
   }
 }

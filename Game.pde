@@ -19,6 +19,8 @@ class Game {
     for(Wave w : waves) w.down();
     
     waves.add(new Wave(level));
+    
+    p.addBall();
   }
   
   void mousePressed() {
